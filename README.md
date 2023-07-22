@@ -1,0 +1,1 @@
+[Documentation](https://developer.themoviedb.org/reference/network-details)
