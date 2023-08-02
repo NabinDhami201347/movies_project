@@ -13,13 +13,9 @@ export const GET = async ({ params }) => {
 			}
 		};
 
-		// Make the API request using axios
 		const response = await axios.request(options);
-
-		// Return the data from the API response using the json helper function
 		return json(response.data);
 	} catch (error) {
-		// If an error occurs during the API request, log the error and return an empty array or an error message.
 		console.error('Error fetching movies:', error);
 		return json({ error: 'Failed to fetch movies' });
 	}

@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-	<title>Movies</title>
+	<title>Upcomming</title>
 </svelte:head>
 
 <main class="w-11/12 mx-auto my-4">
