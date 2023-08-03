@@ -1,34 +1,5 @@
 <script lang="ts">
-	import axios from 'axios';
-
-	interface Movie {
-		id: number;
-		title: string;
-		overview: string;
-		backdrop_path: string;
-	}
-
-	let searchTerm: string = '';
-	let searchResults: Movie[] = [];
-
-	async function handleClick() {
-		const options = {
-			method: 'GET',
-			url: `https://api.themoviedb.org/3/search/movie?query=${searchTerm}`,
-			headers: {
-				accept: 'application/json',
-				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNTRiNzI0YTAwODQ3OGMyZTQ3NjI2MzYzMjYxNmQwOCIsInN1YiI6IjYxYmU5NTFhNjk5ZmI3MDA5NzVlNTJkYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.86XlFAqjy1xg6KahHCzGUZMo5I3nvhRs-31woh3jbp4'
-			}
-		};
-		try {
-			const response = await axios.request(options);
-			searchResults = response.data.results;
-		} catch (error) {
-			console.error('Error fetching search results:', error);
-			searchResults = [];
-		}
-	}
+	export let data;
 
 	// @ts-ignore
 	function truncateOverview(overview, wordLimit) {
@@ -41,22 +12,14 @@
 	}
 </script>
 
-<div class="flex items-center justify-center p-4">
-	<input
-		type="text"
-		placeholder="Enter your search term..."
-		class="p-2 border border-gray-300 rounded-md mr-2"
-		bind:value={searchTerm}
-	/>
-	<button type="submit" class="p-2 bg-blue-500 text-white rounded-md" on:click={handleClick}>
-		Search
-	</button>
-</div>
+<svelte:head>
+	<title>Movies</title>
+</svelte:head>
 
 <main class="w-11/12 mx-auto my-4">
-	{#if searchResults.length > 0}
+	{#if data.movies && data.movies.length > 0}
 		<div class="grid grid-cols-4 gap-4 p-2">
-			{#each searchResults as movie}
+			{#each data.movies as movie}
 				<a href={`/movies/${movie.id}`}>
 					<div
 						class="border border-gray-300 rounded-lg h-80 transition-shadow hover:shadow-md overflow-hidden"
@@ -76,7 +39,7 @@
 				</a>
 			{/each}
 		</div>
-	{:else if searchTerm.trim() !== ''}
-		<p>No results found.</p>
+	{:else}
+		<p>No movies found.</p>
 	{/if}
 </main>
