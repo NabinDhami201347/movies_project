@@ -48,7 +48,7 @@
 		class="p-2 border border-gray-300 rounded-md mr-2"
 		bind:value={searchTerm}
 	/>
-	<button type="submit" class="p-2 bg-blue-500 text-white rounded-md" on:click={handleClick}>
+	<button type="submit" class="px-6 py-2 bg-blue-500 text-white rounded-md" on:click={handleClick}>
 		Search
 	</button>
 </div>

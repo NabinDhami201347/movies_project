@@ -20,6 +20,9 @@
 				<li class="hover:underline transition-colors duration-300 ease-in-out">
 					<a href="/toprated">Top Rated</a>
 				</li>
+				<li class="hover:underline transition-colors duration-300 ease-in-out">
+					<a href="/search">Search</a>
+				</li>
 				<form action="/logout" method="post" use:enhance>
 					<button type="submit">Logout</button>
 				</form>
